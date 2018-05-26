@@ -6,7 +6,7 @@ module.exports = {
     mongolab:
     {
         name: "mongolab",
-        url: "mongodb://localhost",
+        url: "mongodb://process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME",
         port: 27017
     },
 
