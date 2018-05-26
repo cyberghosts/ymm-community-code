@@ -9,9 +9,9 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
     var lat = 0;
     var long = 0;
 
-    // Set initial coordinates to the center of the US
-    $scope.formData.longitude = -98.350;
-    $scope.formData.latitude = 39.500;
+    // Set initial coordinates to the center of the Fort McMurray
+    $scope.formData.longitude = 56.717;
+    $scope.formData.latitude = -111.358;
 
     // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data){
@@ -78,6 +78,39 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
                 $scope.formData.gender = "";
                 $scope.formData.age = "";
                 $scope.formData.favlang = "";
+
+                // Refresh the map with new data
+                gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+            })
+            .error(function (data) {
+                console.log('Error: ' + data);
+            });
+    };
+
+    // Creates a new POI based on the form fields
+    $scope.createPOI = function() {
+
+        // Grabs all of the text box fields
+        var poiData = {
+            poiname: $scope.formData.poiname,
+            address: $scope.formData.address,
+            phone: $scope.formData.phone,
+            description: $scope.formData.description,
+            category: $scope.formData.category,
+            location: [$scope.formData.longitude, $scope.formData.latitude],
+            htmlverified: $scope.formData.htmlverified
+        };
+
+        // Saves the user data to the db
+        $http.post('/pois', userData)
+            .success(function (data) {
+
+                // Once complete, clear the form (except location)
+                $scope.formData.poiname = "";
+                $scope.formData.address = "";
+                $scope.formData.phone = "";
+                $scope.formData.description = "";
+                $scope.formData.category = "";
 
                 // Refresh the map with new data
                 gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
