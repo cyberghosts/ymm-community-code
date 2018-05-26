@@ -16,14 +16,14 @@ var app = angular.module('meanMapApp', ['addCtrl', 'queryCtrl', 'headerCtrl', 'g
 
         // All else forward to the Join Team Control Panel
         }).when('/addpoi', {
-            controller: 'addPOICtrl',
+            controller: 'addCtrl',
             templateUrl: 'partials/addPOIForm.html',
 
         // All else forward to the Join Team Control Panel
         }).when('/findpoi', {
-            controller: 'queryPOICtrl',
+            controller: 'queryCtrl',
             templateUrl: 'partials/queryPOIForm.html',
 
         // All else forward to the Join Team Control Panel
-        }).otherwise({redirectTo:'/join'})
+        }).otherwise({redirectTo:'/addpoi'})
     });

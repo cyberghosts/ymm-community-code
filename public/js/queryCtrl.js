@@ -62,5 +62,38 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
                 console.log('Error ' + queryResults);
             })
     };
+
+    // Take query parameters and incorporate into a JSON queryBody
+    $scope.queryPOIs = function(){
+
+        // Assemble Query Body
+        queryBody = {
+            longitude: parseFloat($scope.formData.longitude),
+            latitude: parseFloat($scope.formData.latitude),
+            distance: parseFloat($scope.formData.distance),
+            male: $scope.formData.male,
+            female: $scope.formData.female,
+            other: $scope.formData.other,
+            minAge: $scope.formData.minage,
+            maxAge: $scope.formData.maxage,
+            favlang: $scope.formData.favlang,
+        };
+
+        // Post the queryBody to the /query POST route to retrieve the filtered results
+        $http.post('/querypoi', queryBody)
+
+            // Store the filtered results in queryResults
+            .success(function(queryResults){
+
+                // Pass the filtered results to the Google Map Service and refresh the map
+                gservice.refresh(queryBody.latitude, queryBody.longitude, queryResults);
+
+                // Count the number of records retrieved for the panel-footer
+                $scope.queryCount = queryResults.length;
+            })
+            .error(function(queryResults){
+                console.log('Error ' + queryResults);
+            })
+    };
 });
 

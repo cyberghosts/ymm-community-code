@@ -98,11 +98,10 @@ addCtrl.controller('addCtrl', function($scope, $http, $rootScope, geolocation, g
             description: $scope.formData.description,
             category: $scope.formData.category,
             location: [$scope.formData.longitude, $scope.formData.latitude],
-            htmlverified: $scope.formData.htmlverified
         };
 
         // Saves the user data to the db
-        $http.post('/pois', userData)
+        $http.post('/pois', poiData)
             .success(function (data) {
 
                 // Once complete, clear the form (except location)

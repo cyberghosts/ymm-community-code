@@ -1,7 +1,7 @@
 // Dependencies
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
-//var POI            = require('./model.js');
+var POI             = require('./modelPOI.js');
 
 
 // Opens App Routes
@@ -63,14 +63,16 @@ module.exports = function(app) {
     // --------------------------------------------------------
     // Provides method for saving new users in the db
     app.post('/pois', function(req, res){
-
+        console.log(req.body);
         // Creates a new User based on the Mongoose schema and the post bo.dy
         var newpoi = new POI(req.body);
 
         // New User is saved in the db.
         newpoi.save(function(err){
-            if(err)
+            if(err){
+                console.log(err);
                 res.send(err);
+            }
             else
                 // If no errors are found, it responds with a JSON of the new user
                 res.json(req.body);

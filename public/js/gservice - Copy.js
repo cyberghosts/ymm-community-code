@@ -17,8 +17,8 @@ angular.module('gservice', [])
         var currentSelectedMarker;
 
         // User Selected Location (initialize to center of America)
-        var selectedLat = 56.717;
-        var selectedLong = -111.358;
+        var selectedLat = 39.50;
+        var selectedLong = -98.35;
 
         // Functions
         // --------------------------------------------------------------
@@ -46,7 +46,7 @@ angular.module('gservice', [])
             else {
 
                 // Perform an AJAX call to get all of the records in the db.
-                $http.get('/pois').success(function(response){
+                $http.get('/users').success(function(response){
 
                     // Then convert the results into map points
                     locations = convertToMapPoints(response);
@@ -68,23 +68,23 @@ angular.module('gservice', [])
 
             // Loop through all of the JSON entries provided in the response
             for(var i= 0; i < response.length; i++) {
-                var poi = response[i];
+                var user = response[i];
 
                 // Create popup windows for each record
-                var  contentString = '<p><b>POI name</b>: ' + poi.poiname + '<br><b>Description</b>: ' + poi.description + '<br>' +
-                    '<b>Address</b>: ' + poi.address + '<br><b>Category</b>: ' + poi.category + '<br><b>Phone</b>: ' + poi.phone + '</p>';
+                var  contentString = '<p><b>Username</b>: ' + user.username + '<br><b>Age</b>: ' + user.age + '<br>' +
+                    '<b>Gender</b>: ' + user.gender + '<br><b>Favorite Language</b>: ' + user.favlang + '</p>';
 
                 // Converts each of the JSON records into Google Maps Location format (Note Lat, Lng format).
                 locations.push(new Location(
-                    new google.maps.LatLng(poi.location[1], poi.location[0]),
+                    new google.maps.LatLng(user.location[1], user.location[0]),
                     new google.maps.InfoWindow({
                         content: contentString,
                         maxWidth: 320
                     }),
-                    poi.poiname,
-                    poi.description,
-                    poi.address,
-                    poi.category
+                    user.username,
+                    user.gender,
+                    user.age,
+                    user.favlang
                 ))
             }
             // location is now an array populated with records in Google Maps format
@@ -92,13 +92,13 @@ angular.module('gservice', [])
         };
 
         // Constructor for generic location
-        var Location = function(latlon, message, poiname, gender, age, favlang){
+        var Location = function(latlon, message, username, gender, age, favlang){
             this.latlon = latlon;
             this.message = message;
-            this.poiname = poiname;
-            this.description = description;
-            this.address = address;
-            this.category = category;
+            this.username = username;
+            this.gender = gender;
+            this.age = age;
+            this.favlang = favlang
         };
 
         // Initializes the map
