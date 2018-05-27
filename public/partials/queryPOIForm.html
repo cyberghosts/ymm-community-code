@@ -27,37 +27,15 @@
                 <div class="form-group">
                     <label for="distance">Max. Distance (miles)</label>
                     <input type="text" class="form-control" id="distance" placeholder="500" ng-model="formData.distance">
-                </div>
-
-                <!-- Note ng-true-value which translates check values into explicit gender strings -->
-                <label>Gender</label>
+                </div>          
                 <div class="form-group">
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="optionsRadios" id="checkmale" value="Male" ng-model="formData.male" ng-true-value = "'Male'">
-                        Male
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="optionsRadios" id="checkfemale" value="Female" ng-model="formData.female" ng-true-value="'Female'">
-                        Female
-                    </label>
-                    <label class="checkbox-inline">
-                        <input type="checkbox" name="optionsRadios" id="checkother" value="What's it to ya?" ng-model="formData.other" ng-true-value="'What\'s it to ya?'">
-                        What's it to ya?
-                    </label>
-                </div>
+                    <label for="poiname">Point of Interest</label>
+                    <input type="number" class="form-control" id="poiname" placeholder="80" ng-model="formData.poiname">
+                </div>      
                 <div class="form-group">
-                    <label for="minage">Min. Age</label>
-                    <input type="number" class="form-control" id="minage" placeholder="5" ng-model="formData.minage">
+                    <label for="category">Category</label>
+                    <input type="text" class="form-control" id="category" placeholder="5" ng-model="formData.category">
                 </div>
-                <div class="form-group">
-                    <label for="maxage">Max Age</label>
-                    <input type="number" class="form-control" id="maxage" placeholder="80" ng-model="formData.maxage">
-                </div>
-                <div class="form-group">
-                    <label for="favlang">Favorite Language</label>
-                    <input type="text" class="form-control" id="favlang" placeholder="Fortran" ng-model="formData.favlang">
-                </div>
-
                 <!-- Query button. Note that its tied to queryUsers() function from queryCtrl.  -->
                 <button type="submit" class="btn btn-danger btn-block" ng-click="queryUsers()">Search</button>
             </form>
@@ -65,7 +43,7 @@
 
         <!-- Footer panel for displaying count. Note how it will only display if queryCount is greater than 0 -->
         <div ng-show="queryCount>0" class="panel-footer">
-                <p class="text-center">Hot Dang! We Found {{queryCount}} Teammates.</p>
+                <p class="text-center">We Found {{queryCount}} POIs.</p>
         </div>
     </div>
 </div>
