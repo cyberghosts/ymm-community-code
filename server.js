@@ -2,8 +2,7 @@
 // -----------------------------------------------------
 var express         = require('express');
 var mongoose        = require('mongoose');
-var ipaddress 		= process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
-var port            = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var port            = process.env.PORT || 8080;
 var database        = require('./app/config');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
@@ -32,5 +31,5 @@ require('./app/routes.js')(app);
 
 // Listen
 // -------------------------------------------------------
-app.listen(port, ipaddress);
-console.log('App listening on ' + ipaddress + ':' + port);
+app.listen(port);
+console.log('App listening on ' + ':' + port);

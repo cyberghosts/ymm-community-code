@@ -6,7 +6,7 @@ module.exports = {
     mongolab:
     {
         name: "mongolab",
-        url: "mongodb://172.30.158.201:27017/sampledb",
+        url: "mongodb://ymmccd:ymmccd@ds235840.mlab.com:35840/ymmccd",
         port: 27017
     },
 
