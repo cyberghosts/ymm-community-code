@@ -1,9 +1,9 @@
 {
-    "name": "MeanMapsApp",
+    "name": "backendgeodb",
     "version": "1.0.0",
-    "description": "Demo app showing the use of Google Maps in MEAN Apps",
+    "description": "Backend GeoDB for YMM Community Code Day",
     "main": "server.js",
-    "author": "Ahmed Haque",
+    "author": "Darren Yee",
     "dependencies": {
         "body-parser": "^1.18.3",
         "express": "^4.16.3",
