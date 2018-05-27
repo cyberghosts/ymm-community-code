@@ -71,8 +71,8 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
             longitude: parseFloat($scope.formData.longitude),
             latitude: parseFloat($scope.formData.latitude),
             distance: parseFloat($scope.formData.distance),
-            category: $scope.formData.category,
             poiname: $scope.formData.poiname,
+            category: $scope.formData.category,
         };
 
         // Post the queryBody to the /query POST route to retrieve the filtered results

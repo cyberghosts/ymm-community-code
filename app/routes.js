@@ -150,8 +150,8 @@ module.exports = function(app) {
         var lat             = req.body.latitude;
         var long            = req.body.longitude;
         var distance        = req.body.distance;
+        var poiname         = req.body.poiname;
         var category        = req.body.category;
-        var poiname        = req.body.poiname;
 
         // Opens a generic Mongoose Query. Depending on the post body we will...
         var query = POI.find({});
@@ -171,7 +171,6 @@ module.exports = function(app) {
         if(category){
             query = query.where('category').equals(category);
         }
-
 
         // Execute Query and Return the Query Results
         query.exec(function(err, pois){
