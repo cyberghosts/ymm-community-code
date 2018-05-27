@@ -162,8 +162,8 @@ module.exports = function(app) {
             // Using MongoDB's geospatial querying features. (Note how coordinates are set [long, lat]
             query = query.where('location').near({ center: {type: 'Point', coordinates: [long, lat]},
 
-                // Converting meters to miles. Specifying spherical geometry (for globe)
-                maxDistance: distance * 1609.34, spherical: true});
+                // Converting meters to miles (1609.34). Specifying spherical geometry (for globe)
+                maxDistance: distance * 1000, spherical: true});
 
         }
 

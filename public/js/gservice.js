@@ -92,7 +92,7 @@ angular.module('gservice', [])
         };
 
         // Constructor for generic location
-        var Location = function(latlon, message, poiname, gender, age, favlang){
+        var Location = function(latlon, message, poiname, description, address, category){
             this.latlon = latlon;
             this.message = message;
             this.poiname = poiname;
@@ -113,7 +113,15 @@ angular.module('gservice', [])
                 // Create a new map and place in the index.html page
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 12,
-                    center: myLatLng
+                    center: myLatLng,
+                    styles: [
+                        {
+                            "featureType": "poi",
+                            "stylers": [
+                                { "visibility": "off" }
+                            ]
+                        }
+                    ]
                 });
             }
 
